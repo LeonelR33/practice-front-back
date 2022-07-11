@@ -6,7 +6,7 @@ const authAdmin = async (req, res, next) => {
 
        const admin = await User.findByPk(id);
 
-       if(admin.userRol === "admin"){
+       if(admin.userRol === "Admin"){
         next();
        }
        else { return res.status(400).json({error: "invalid rol"})}

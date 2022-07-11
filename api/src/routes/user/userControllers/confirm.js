@@ -3,7 +3,7 @@ const { User } = require("../../../db");
 
 const router = Router();
 
-router.get("/",(req, res, next) => {
+router.put("/",(req, res, next) => {
     const {confirm} = req.query;
 
     User.findByPk(confirm)
