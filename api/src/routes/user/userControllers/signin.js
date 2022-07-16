@@ -29,7 +29,7 @@ router.post("/", (req, res, next)=>{
         }
     } 
     else{
-        res.status(400).json({error: "email dont exists"})
+        res.status(400).json({error: "email does not exist"})
     }
 }).catch(err => res.status(400).send(err.message))
 })

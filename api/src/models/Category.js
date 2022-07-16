@@ -7,3 +7,5 @@ const Category = (sequelize) => {
         },
     })
 }
+
+module.exports = Category;

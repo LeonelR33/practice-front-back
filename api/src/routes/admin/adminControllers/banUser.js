@@ -4,7 +4,7 @@ const { User } = require("../../../db");
 const router = Router();
 
 router.put("/", (req, res, next) => {
-    const {id, banned} = req.query;
+    const {id, banned} = req.body;
 
     User.findByPk(id).then(response =>{ 
         if(response){

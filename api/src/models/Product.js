@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize/types")
+const { DataTypes } = require("sequelize")
 
 const Product = (sequelize) => {
     sequelize.define("Product", {
@@ -7,3 +7,5 @@ const Product = (sequelize) => {
         },
     })
 }
+
+module.exports = Product;
