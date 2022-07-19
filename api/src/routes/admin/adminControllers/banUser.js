@@ -6,10 +6,10 @@ const router = Router();
 router.put("/", (req, res, next) => {
     const {id, banned} = req.body;
 
-    User.findByPk(id).then(response =>{ 
-        if(response){
-            response.banned = banned;
-            response.save().then(response => {
+    User.findByPk(id).then(user =>{ 
+        if(user){
+            user.banned = banned;
+            user.save().then(user => {
                 return res.status(200).send("user banned status updated")
             }).catch(err => {return res.status(400).send(err.message)})
         }

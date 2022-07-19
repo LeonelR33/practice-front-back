@@ -13,12 +13,12 @@ router.post("/", (req, res, next)=>{
         where: {
             email: email,
         }
-    }).then(response => {
-    if(response){
-        if(response.confirmed){
-            if(response.comparePassword(password)){
-                response.token = generateJwt(response.id);
-                response.save().then(( ) => res.status(200).send("correct password"))
+    }).then(user => {
+    if(user){
+        if(user.confirmed){
+            if(user.comparePassword(password)){
+                user.token = generateJwt(user.id);
+                user.save().then(( ) => res.status(200).json({msg:"correct password", name: user.name ,token: user.token}))
             }
             else{
                 res.status(400).json({error: "incorrect password"})

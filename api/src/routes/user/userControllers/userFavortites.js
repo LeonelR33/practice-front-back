@@ -11,7 +11,7 @@ router.post("/add",( req, res, next )=>{
         if(user){
             Product.findByPk(productId).then(product => {
                 if(product){
-                   user.addProduct(productId).then(response => {
+                   user.addProduct(productId).then( () => {
                     res.status(200).send("added to favorites")
                    }) 
                 }
@@ -30,7 +30,7 @@ router.delete("/remove", ( req, res, next ) => {
         if(user){
             Product.findByPk(productId).then(product => {
                 if(product){
-                   user.removeProduct(productId).then(response => {
+                   user.removeProduct(productId).then(  () => {
                     res.status(200).send("removed from favorites")
                    }) 
                 }

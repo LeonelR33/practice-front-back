@@ -7,7 +7,7 @@ const router = Router();
 router.get("/", (req, res, next)=> {
     Product.findAll(
         {include: Category}
-    ).then(response => res.status(200).json(response))
+    ).then(product => res.status(200).json(product))
     .catch(err => res.status(400).send(err.message))
 })
 
@@ -17,18 +17,18 @@ router.post("/create", (req, res, next) => {
     Product.create({
         name: name,
     })
-    .then(response => response.addCategory(catId))
-    .then(response => res.status(200).send("product created"))
+    .then(newProduct => newProduct.addCategory(catId))
+    .then(newProduct => res.status(200).send("product created"))
     .catch(err => res.status(400).send(err.message))
 })
 
 router.put("/edit", (req, res, next)=> {
     const { name, id } = req.body;
 
-    Product.findByPk(id).then(response => {
-        if(response) {
-            response.name = name;
-            response.save().then(response => res.status(200).send("product updated"))
+    Product.findByPk(id).then(product => {
+        if(product) {
+            product.name = name;
+            product.save().then( product => res.status(200).send("product updated"))
             .catch(err => res.status(400).send(err.message))
         }
         else{
@@ -44,7 +44,7 @@ router.delete("/delete", (req, res, next) => {
         where: {
             id: id
         }
-    }).then(response => res.status(200).send("product deleted"))
+    }).then( product => res.status(200).send("product deleted"))
     .catch(err => res.status(400).send(err.message))
 })
 

@@ -6,8 +6,8 @@ const router = Router();
 router.get("/",(req, res, next)=>{
     User.findAll({
         include: Product
-    }).then(response => {
-        res.status(200).json(response)
+    }).then(users => {
+        res.status(200).json(users)
     }).catch(err => res.status(400).send(err.message))
 })
 

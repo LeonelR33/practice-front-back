@@ -22,8 +22,8 @@ router.post("/", (req, res, next)=>{
 
     User.findOne({
         where: { email: email },
-    }).then(response => {
-        if(response){
+    }).then(user => {
+        if(user){
             return res.status(400).send("email is already in use")
         }
         else {
@@ -35,7 +35,7 @@ router.post("/", (req, res, next)=>{
                 email: email,
                 password: password,
                 confirmed: false,
-            }).then(response => res.status(201).send(`user ${response.email} created`))
+            }).then(newUser => res.status(201).send(`user ${newUser.email} created`))
             .catch( err => res.status(400).json(err.message));
         }
         
